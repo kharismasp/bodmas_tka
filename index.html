@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#3d315f">
+  <meta name="description" content="Kirani Story to Math — Cambridge Grade 6 + TKA contextual operations lab.">
+  <title>Kirani Story → Math Lab</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-mode="teacher">
+  <header class="topbar">
+    <button id="backBtn" class="back-btn" type="button" aria-label="Go back" title="Back">
+      <img src="assets/ui/back.png" alt=""><span class="sr-only">Back</span>
+    </button>
+    <button class="brand" type="button" id="homeBtn" aria-label="Back to menu">
+      <img src="assets/math/notebook.png" alt="">
+      <span><strong>Story → Math</strong><small>Operations · Multistep · TKA</small></span>
+    </button>
+    <div class="progress-wrap" aria-label="Lesson progress">
+      <div class="progress-track"><span id="progressFill"></span></div>
+      <div id="progressDots" class="progress-dots" aria-hidden="true"></div>
+    </div>
+    <button id="teacherPass" class="teacher-pass" type="button" title="Teacher: skip current activity">PASS →</button>
+  </header>
+
+  <main id="app">
+    <section id="cover" class="scene cover-scene active" aria-labelledby="coverTitle">
+      <div class="scene-bg study-bg"></div><div class="scene-overlay"></div>
+      <div class="cover-grid">
+        <div class="cover-copy glass-card">
+          <p class="eyebrow">TEACHER VERSION · CAMBRIDGE GRADE 6 + TKA</p>
+          <h1 id="coverTitle">Story →<br><span>Math Lab</span></h1>
+          <p class="lead">Operations &amp; multistep problem solving. The goal is to turn a story into mathematics before calculation begins.</p>
+          <div class="motto-card">
+            <img src="assets/mascot/guiding.png" alt="Friendly rabbit guide">
+            <p><strong>Today's routine:</strong><br><b>READ → BUILD → SOLVE → CHECK</b><br><em>Build the math first.</em></p>
+          </div>
+          <button class="primary-btn large" id="startLesson" type="button">Start Warming Up</button>
+        </div>
+        <aside class="cover-map glass-card" aria-label="Lesson menu">
+          <p class="eyebrow">TODAY'S MENU</p>
+          <p class="menu-intro">One task at a time. Structure and calculation are checked separately whenever the problem needs both.</p>
+          <div class="section-menu">
+            <button class="section-menu-card" type="button" data-section-target="warmup">
+              <img src="assets/nav/lectern.png" alt=""><span><b>Warming Up</b><small>Percentage · BODMAS · first story model</small></span>
+            </button>
+            <button class="section-menu-card" type="button" data-section-target="lesson">
+              <img src="assets/nav/portal.png" alt=""><span><b>Lesson with Miss</b><small>Story → expression · strips · puzzles · TKA</small></span>
+            </button>
+            <button class="section-menu-card" type="button" data-section-target="practice">
+              <img src="assets/nav/moon-door.png" alt=""><span><b>Latihan Mandiri</b><small>8 fixed independent challenges</small></span>
+            </button>
+            <button class="section-menu-card" type="button" data-section-target="finalCheck">
+              <img src="assets/nav/garden-gate.png" alt=""><span><b>Final Independent Check</b><small>2 unseen problems · structure + calculation</small></span>
+            </button>
+          </div>
+          <p class="menu-note"><strong>← Back</strong> preserves progress. <strong>PASS →</strong> skips the current activity without awarding mastery.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section id="warmup" class="scene activity-scene" aria-labelledby="warmTitle">
+      <div class="scene-bg study-bg soft"></div>
+      <div class="activity-shell">
+        <aside class="side-panel glass-card">
+          <p class="eyebrow">WARMING UP</p>
+          <h2 id="warmTitle">Quick Reasoning Scan</h2>
+          <p>Five compact tasks. The final warm-up asks for an expression only — no solving yet.</p>
+          <div class="routine-strip compact">
+            <div><b>READ</b><small>What is happening?</small></div>
+            <div><b>BUILD</b><small>Turn it into math.</small></div>
+            <div><b>SOLVE</b><small>Calculate.</small></div>
+            <div><b>CHECK</b><small>Does it fit?</small></div>
+          </div>
+          <img class="side-mascot" src="assets/mascot/thinking.png" alt="Rabbit thinking">
+        </aside>
+        <div class="task-card">
+          <div class="task-head"><span id="warmTag" class="tag">QUICK CHECK</span><strong id="warmCounter">1 / 5</strong></div>
+          <div id="warmContent"></div>
+          <div id="warmFeedback" class="feedback" aria-live="polite"></div>
+          <div class="task-footer"><button id="warmHint" class="ghost-btn" type="button">Small hint</button><button id="warmNext" class="primary-btn" type="button" disabled>Next</button></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="zoomBreak" class="scene zoom-break-scene" aria-labelledby="zoomBreakTitle">
+      <div class="scene-bg study-bg soft"></div>
+      <div class="zoom-break-card glass-card">
+        <img src="assets/mascot/wave.png" alt="Rabbit waving">
+        <p class="eyebrow">SCREEN BREAK</p>
+        <h2 id="zoomBreakTitle">Warming Up complete.</h2>
+        <p class="zoom-main">Please go back to <strong>Zoom</strong> now.</p>
+        <p>The next part is <strong>Lesson with Miss</strong>.</p>
+        <button id="breakContinue" class="primary-btn large" type="button">Continue to Lesson with Miss</button>
+      </div>
+    </section>
+
+    <section id="lesson" class="scene activity-scene" aria-labelledby="lessonTitle">
+      <div class="scene-bg study-bg soft"></div>
+      <div class="activity-shell wide">
+        <aside class="side-panel glass-card">
+          <p class="eyebrow">LESSON WITH MISS</p>
+          <h2 id="lessonTitle">Build the Math First</h2>
+          <p>The scaffold fades as the lesson progresses. Correct structure stays earned even when arithmetic needs a retry.</p>
+          <nav id="lessonTabs" class="lesson-tabs" aria-label="Lesson blocks"></nav>
+          <div class="routine-strip compact sticky-helper">
+            <div><b>READ</b><small>What is happening?</small></div>
+            <div><b>BUILD</b><small>What is the mathematical route?</small></div>
+            <div><b>SOLVE</b><small>Calculate after the model is ready.</small></div>
+            <div><b>CHECK</b><small>Does the result fit the situation?</small></div>
+          </div>
+        </aside>
+        <div class="task-card guided-card">
+          <div class="task-head"><span id="lessonTag" class="tag">STORY → EXPRESSION</span><strong id="lessonCounter">1 / 1</strong></div>
+          <div id="lessonContent"></div>
+          <div id="lessonFeedback" class="feedback" aria-live="polite"></div>
+          <div id="lessonParallel" class="parallel-zone" hidden></div>
+          <div class="task-footer"><button id="lessonHint" class="ghost-btn" type="button">Small hint</button><button id="lessonNext" class="primary-btn" type="button" disabled>Next</button></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="practice" class="scene activity-scene" aria-labelledby="practiceTitle">
+      <div class="scene-bg garden-bg soft"></div>
+      <div class="activity-shell wide">
+        <aside class="side-panel glass-card">
+          <p class="eyebrow">LATIHAN MANDIRI</p>
+          <h2 id="practiceTitle">8-Challenge Bank</h2>
+          <p>Fixed order for teacher visibility. Parallel retry appears only after the original has been genuinely attempted and completed.</p>
+          <div id="practiceNavigator" class="challenge-nav eight" aria-label="Independent challenge navigator"></div>
+          <div class="mini-rule"><strong>Independent evidence</strong><span>Expression / route first where specified.</span><span>One lucky click never counts as completion.</span></div>
+        </aside>
+        <div class="task-card practice-card">
+          <div class="task-head"><span id="practiceTag" class="tag">INDEPENDENT 1</span><strong id="practiceCounter">1 / 8</strong></div>
+          <div id="practiceContent"></div>
+          <div id="practiceFeedback" class="feedback" aria-live="polite"></div>
+          <div class="parallel-zone" id="practiceParallel" hidden></div>
+          <div class="task-footer"><button id="practiceHint" class="ghost-btn" type="button">Small hint</button><button id="practiceNext" class="primary-btn" type="button" disabled>Next challenge</button></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="finalCheck" class="scene activity-scene" aria-labelledby="finalTitle">
+      <div class="scene-bg study-bg soft"></div>
+      <div class="activity-shell">
+        <aside class="side-panel glass-card">
+          <p class="eyebrow">FINAL INDEPENDENT CHECK</p>
+          <h2 id="finalTitle">Unseen Problems</h2>
+          <p>No scaffold is visible initially. Structure and calculation are recorded separately.</p>
+          <div id="finalNavigator" class="challenge-nav two"></div>
+          <div class="mini-rule"><strong>Scoring</strong><span>STRUCTURE: sensible mathematical model.</span><span>CALCULATION: arithmetic result.</span></div>
+          <img class="side-mascot small" src="assets/mascot/thinking.png" alt="Rabbit thinking">
+        </aside>
+        <div class="task-card">
+          <div class="task-head"><span id="finalTag" class="tag">FINAL 1</span><strong id="finalCounter">1 / 2</strong></div>
+          <div id="finalContent"></div>
+          <div id="finalFeedback" class="feedback" aria-live="polite"></div>
+          <div class="task-footer"><button id="finalHint" class="ghost-btn" type="button">Small hint</button><button id="finalNext" class="primary-btn" type="button" disabled>Next</button></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="finish" class="scene finish-scene" aria-labelledby="finishTitle">
+      <div class="scene-bg garden-bg"></div><div class="scene-overlay lighter"></div>
+      <div class="finish-card glass-card">
+        <img src="assets/mascot/cheer.png" alt="Rabbit guide">
+        <p class="eyebrow">SESSION SUMMARY</p>
+        <h2 id="finishTitle">Story → Math complete.</h2>
+        <p class="finish-lead">The useful evidence is whether a new story can become a sensible mathematical model before calculation.</p>
+        <div id="finishSummary" class="finish-summary"></div>
+        <div class="finish-actions">
+          <button id="finishMenu" class="ghost-btn" type="button">Back to Menu</button>
+          <button id="restartSession" class="primary-btn" type="button">Start Fresh Session</button>
+        </div>
+      </div>
+    </section>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="js/app.js"></script>
+</body>
+</html>
